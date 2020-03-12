@@ -1,23 +1,32 @@
-import React from 'react';
-import logo from './logo.svg';
+import React, {useState} from 'react';
 import './App.css';
+import Json from "./common/Json/Json";
 
 function App() {
+  const [location, setLocation] = useState('');
+  const getLocation = () => {
+    if (!location && navigator.geolocation) {
+      navigator.geolocation.getCurrentPosition(
+        geolocation => setLocation(geolocation.coords),
+        error => console.log('Error occurred. Error code: ' + error.code)
+      )
+    }
+  };
   return (
     <div className="App">
       <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
         <p>
-          Edit <code>src/App.js</code> and save to reload.
+          Do you allow to proceed your location?
         </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
+        <div className="buttons">
+          <button>Decline</button>
+          <button onClick={getLocation}>Allow</button>
+        </div>
+        {location && <ul>
+          <li>latitude: {location.latitude}</li>
+          <li>longitude: {location.longitude}</li>
+        </ul>}
+
       </header>
     </div>
   );
