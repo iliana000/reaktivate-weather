@@ -5,8 +5,10 @@ import './App.css';
 function App() {
   const [location, setLocation] = useState('');
   const [weather, setWeather] = useState('');
+  const [city, setCity] = useState('');
+  const [cityWeather, setCityWeather] = useState('');
   const [temperatureColor, setTemperatureColor] = useState('');
-  const getLocation = () => {
+  function getLocation () {
     if (!location && navigator.geolocation) {
       navigator.geolocation.getCurrentPosition(
         geolocation => {
@@ -30,7 +32,18 @@ function App() {
     });
     setWeather(data);
     setTemperatureColor(getTemperatureColor(data.main.temp));
-    return data;
+  }
+  async function getCityWeather() {
+    const {data} = await axios({
+      baseURL: 'https://api.openweathermap.org/data/2.5/',
+      url: 'weather',
+      params: {
+        q: city,
+        appid: '142c1e9a1787ce68fb592fb786e93507',
+        units: 'metric'
+      }
+    });
+    setCityWeather(data);
   }
   function setTemperature(temp) {
     setWeather({
@@ -78,11 +91,33 @@ function App() {
             {location.description ??
             `${weather.name}, ${weather.sys?.country}`}
           </div>
+          <p>
+            <input type="range" min="-50" max="50" value={weather.main?.temp}
+                   onChange={e => setTemperature(e.target.value)}/>
+          </p>
         </>}
-        <p>
-          <input type="range" min="-50" max="50" value={weather.main?.temp}
-                 onChange={e => setTemperature(e.target.value)}/>
-        </p>
+
+        <div className="city-search">
+          <input type="search" onChange={(e)=>setCity(e.target.value)}/>
+          <button onClick={getCityWeather}>Search</button>
+          {cityWeather && <ul>
+            <img src={`https://openweathermap.org/img/wn/${cityWeather.weather[0].icon}@2x.png`} alt=""/>
+            <h2 className="current__city">
+              {`${cityWeather.name}, ${cityWeather.sys?.country}`}
+              <i>{cityWeather.weather[0].description}</i>
+            </h2>
+            <div>
+              <span className="current__temperature">{Math.round(cityWeather.main.temp*10)/10} <small>°C</small></span>
+              <span>
+                {`temperature from ${Math.round(cityWeather.main.temp_min*10)/10} to ${Math.round(cityWeather.main.temp_max*10)/10} °С, 
+              wind ${cityWeather.wind.speed} m/s. clouds ${cityWeather.clouds.all} %, ${cityWeather.main.pressure} hpa`}
+              </span>
+            </div>
+            <div>
+              Geo coords [{cityWeather.coord.lat}, {cityWeather.coord.lon}]
+            </div>
+          </ul>}
+        </div>
 
       </header>
     </div>
