@@ -5,6 +5,7 @@ import './App.css';
 function App() {
   const [location, setLocation] = useState('');
   const [weather, setWeather] = useState('');
+  const [temperature, setTemperature] = useState('');
   const getLocation = () => {
     if (!location && navigator.geolocation) {
       navigator.geolocation.getCurrentPosition(
@@ -28,11 +29,18 @@ function App() {
       }
     });
     setWeather(data);
+    const temperature =
+      data.main.temp<-10 ? '#00ffff' :
+        data.main.temp>30 ? '#ff8c00' :
+          '#fff700';
+    setTemperature(temperature);
     return data;
   }
+
+
   return (
     <div className="App">
-      <header className="App-header">
+      <header className="App-header" style={{backgroundColor: temperature}}>
 
         {location ?
           <ul>
