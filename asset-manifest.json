@@ -1,0 +1,23 @@
+{
+  "files": {
+    "main.css": "/reaktivate-weather/static/css/main.5f361e03.chunk.css",
+    "main.js": "/reaktivate-weather/static/js/main.1518e860.chunk.js",
+    "main.js.map": "/reaktivate-weather/static/js/main.1518e860.chunk.js.map",
+    "runtime-main.js": "/reaktivate-weather/static/js/runtime-main.2bb1464a.js",
+    "runtime-main.js.map": "/reaktivate-weather/static/js/runtime-main.2bb1464a.js.map",
+    "static/js/2.df4c800b.chunk.js": "/reaktivate-weather/static/js/2.df4c800b.chunk.js",
+    "static/js/2.df4c800b.chunk.js.map": "/reaktivate-weather/static/js/2.df4c800b.chunk.js.map",
+    "index.html": "/reaktivate-weather/index.html",
+    "precache-manifest.e08aebdd781724659692ad216e16c2f5.js": "/reaktivate-weather/precache-manifest.e08aebdd781724659692ad216e16c2f5.js",
+    "service-worker.js": "/reaktivate-weather/service-worker.js",
+    "static/css/main.5f361e03.chunk.css.map": "/reaktivate-weather/static/css/main.5f361e03.chunk.css.map",
+    "static/js/2.df4c800b.chunk.js.LICENSE.txt": "/reaktivate-weather/static/js/2.df4c800b.chunk.js.LICENSE.txt",
+    "static/media/logo.svg": "/reaktivate-weather/static/media/logo.5d5d9eef.svg"
+  },
+  "entrypoints": [
+    "static/js/runtime-main.2bb1464a.js",
+    "static/js/2.df4c800b.chunk.js",
+    "static/css/main.5f361e03.chunk.css",
+    "static/js/main.1518e860.chunk.js"
+  ]
+}
