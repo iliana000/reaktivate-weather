@@ -5,7 +5,7 @@ import './App.css';
 function App() {
   const [location, setLocation] = useState('');
   const [weather, setWeather] = useState('');
-  const [temperature, setTemperature] = useState('');
+  const [temperatureColor, setTemperatureColor] = useState('');
   const getLocation = () => {
     if (!location && navigator.geolocation) {
       navigator.geolocation.getCurrentPosition(
@@ -29,18 +29,31 @@ function App() {
       }
     });
     setWeather(data);
-    const temperature =
-      data.main.temp<-10 ? '#00ffff' :
-        data.main.temp>30 ? '#ff8c00' :
-          '#fff700';
-    setTemperature(temperature);
+    setTemperatureColor(getTemperatureColor(data.main.temp));
     return data;
+  }
+  function setTemperature(temp) {
+    setWeather({
+      ...weather,
+      main: {
+        ...weather.main,
+        temp: temp
+      }
+    });
+    setTemperatureColor(getTemperatureColor(temp));
+  }
+  function getTemperatureColor(temp) {
+    const temperatureColor =
+      temp<-10 ? '#00ffff' :
+        temp>30 ? '#ff8c00' :
+          '#fff700';
+    return temperatureColor;
   }
 
 
   return (
     <div className="App">
-      <header className="App-header" style={{backgroundColor: temperature}}>
+      <header className="App-header" style={{backgroundColor: temperatureColor}}>
 
         {location ?
           <ul>
@@ -66,6 +79,10 @@ function App() {
             `${weather.name}, ${weather.sys?.country}`}
           </div>
         </>}
+        <p>
+          <input type="range" min="-50" max="50" value={weather.main?.temp}
+                 onChange={e => setTemperature(e.target.value)}/>
+        </p>
 
       </header>
     </div>

@@ -21,6 +21,7 @@
   display: flex;
   justify-content: space-around;
   width: 250px;
+  margin: 0 auto;
 }
 button {
   padding: 5px 15px;
