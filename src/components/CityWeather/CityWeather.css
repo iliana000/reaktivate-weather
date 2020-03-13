@@ -1,0 +1,11 @@
+.city-weather {
+  margin-top: 50px;
+}
+.city-weather__card {
+  display: grid;
+  grid-template: repeat(3, 40px) / 1fr 3fr;
+  margin-top: 30px;
+}
+.city-weather__img {
+  grid-row: 1 / 4;
+}
