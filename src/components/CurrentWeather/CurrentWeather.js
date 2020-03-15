@@ -1,5 +1,5 @@
 import React, {useEffect} from 'react';
-import './CurrentWeather.css';
+import './CurrentWeather.scss';
 import {connect} from "react-redux";
 import {getLocation} from "../../store/actions/location";
 import {getCurrentWeather, currentWeatherSuccess} from "../../store/actions/weather";

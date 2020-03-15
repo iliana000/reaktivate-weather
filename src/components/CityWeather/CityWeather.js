@@ -1,5 +1,5 @@
 import React, {useState} from 'react';
-import './CityWeather.css';
+import './CityWeather.scss';
 import {connect} from "react-redux";
 import {getLocation} from "../../store/actions/location";
 import {getCityWeather} from "../../store/actions/weather";

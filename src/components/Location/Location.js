@@ -1,5 +1,5 @@
 import React from 'react';
-import './Location.css';
+import './Location.scss';
 import {connect} from "react-redux";
 import {getLocation} from "../../store/actions/location";
 import {getCurrentWeather} from "../../store/actions/weather";

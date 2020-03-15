@@ -1,5 +1,5 @@
 import React from 'react';
-import './App.css';
+import './App.scss';
 import {connect} from "react-redux";
 import CurrentWeather from "../CurrentWeather/CurrentWeather";
 import CityWeather from "../CityWeather/CityWeather";
